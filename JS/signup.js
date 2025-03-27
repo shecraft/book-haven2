@@ -51,7 +51,7 @@ async function createSignUpAccount(e) {
      console.log(res); 
      showAlert()
      setTimeout(() => {
-      location.href = 'html/sign in.html'
+      location.href = 'sign in.html'
      }, 2000);
     } catch (error) {
       if (error.message === "Firebase: Error (auth/email-already-in-use).") {
