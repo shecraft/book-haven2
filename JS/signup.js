@@ -2,7 +2,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
   import { getFirestore, collection, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword,sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,11 +45,14 @@ async function createSignUpAccount(e) {
      }
      const {email,password, ...details} = userDetails;
      const res = await createUserWithEmailAndPassword(auth, email, password);
-     alert("Sign Up successfully!!") 
+     await sendEmailVerification(res.user)
      const docRef = doc(userColRef, res.user.uid)
      const docRes = await setDoc(docRef, details);
      console.log(res); 
-     location.href = `./sign in.html`
+     showAlert()
+     setTimeout(() => {
+      location.href = '../html/sign in.html'
+     }, 2000);
     } catch (error) {
       if (error.message === "Firebase: Error (auth/email-already-in-use).") {
         errorP.textContent = "Email already exist";
@@ -71,5 +74,5 @@ function showAlert() {
     text: "Signed Up successfully",
     icon: "success",
     confirmButtonText: "OK"
-});
+  });
 }
