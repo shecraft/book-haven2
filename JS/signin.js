@@ -23,14 +23,17 @@
 signInForm.addEventListener("submit", logInUser)
 async function logInUser(e) {
     try {
-        errorP.textContent = ""
         e.preventDefault()
+        errorP.textContent = ""
         const userDeatails = {
             email: signInForm.email.value.trim(),
             password: signInForm.password.value.trim(),
         }
         await signInWithEmailAndPassword(auth, userDeatails.email, userDeatails.password)
-        alert("sign In successful")
+        showAlert()
+        setTimeout(() => {
+            location.href = 'Dashboard.html'
+        }, 2000);
     } catch (error) {
         console.log(error.message);
         if (error.message === "Firebase: Error (auth/invalid-credential).") {
@@ -47,3 +50,12 @@ onAuthStateChanged(auth, (user)=>{
         
     }
 })
+submitBTN.addEventListener("submit", showAlert);
+function showAlert() {
+  Swal.fire({
+    title: "Sign In!",
+    text: "Successfully registered",
+    icon: "success",
+    confirmButtonText: "OK"
+  });
+}

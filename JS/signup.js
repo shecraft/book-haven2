@@ -70,7 +70,7 @@ async function createSignUpAccount(e) {
 submitBTN.addEventListener("submit", showAlert);
 function showAlert() {
   Swal.fire({
-    title: "Hello!",
+    title: "Sign Up!",
     text: "Signed Up successfully",
     icon: "success",
     confirmButtonText: "OK"
