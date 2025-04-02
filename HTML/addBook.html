@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add a Book</h2>
+        <form id="bookForm">
+            <input type="text" id="title" placeholder="Book Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="text" id="category" placeholder="Category" required>
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
+
+    <script type="module">
+        document.getElementById("bookForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById("title").value.trim();
+            const author = document.getElementById("author").value.trim();
+            const category = document.getElementById("category").value.trim();
+            
+            if (title && author && category) {
+                alert(`Book Added:\nTitle: ${title}\nAuthor: ${author}\nCategory: ${category}`);
+                document.getElementById("bookForm").reset();
+            } else {
+                alert("Please fill all fields");
+            }
+        });
+    </script>
+</body>
+</html>
