@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../images/book_haven_logo-removebg-preview (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> BOOK HAVEN-Book Library Dashboard</title>
     <style>
         :root {
@@ -337,7 +338,16 @@
             margin: 0 2px;
         }
 
-        @media screen and (min-width:475px) {}
+        /* @media screen and (max-width:500px) {
+            .sidebar{
+                opacity: 0;
+                position: absolute;
+                transform: translateX(-100%);
+            }
+            .header{
+                width: 500px;
+            }
+        } */
     </style>
 </head>
 
@@ -346,13 +356,16 @@
         <!-- Sidebar Navigation -->
         <div class="sidebar">
             <div class="sidebar-logo">
+                <i class="fas fa-bars"></i>
                 <span class="logo-icon">📚</span> Book Haven
             </div>
             <ul class="sidebar-menu">
                 <li><a href="#catalog" class="active"><i class="fas fa-book"></i> Book Catalog</a></li>
                 <li><a href="#categories"><i class="fas fa-tags"></i> Categories</a></li>
+                <li><a href="./addBook.html"><i class="fas fa-sign-out-alt"></i> Add Book</a></li>
                 <li><a href="#reviews"><i class="fas fa-star"></i> Reviews</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="./borrow.html"><i class="fas fa-cog"></i> Borrow</a></li>
+                <li><a href="./About Us.html"><i class="fas fa-sign-out-alt"></i>About</a></li>
                 <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
             </ul>
         </div>
@@ -361,13 +374,9 @@
         <div class="header">
             <div class="header-title">Dashboard</div>
             <div class="header-actions">
-                <div class="home">
-                    <a href="">Home</a>
-                    <a href="../html/About Us.html">About</a>
-                </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="Search books...">
-                    <button>🔍</button>
+                    <input id="search-input" type="text" placeholder="Search books...">
+                    <button id="search-btn">🔍</button>
                 </div>
                 <div class="user-profile">
                     <img src="../images/book_haven_logo-removebg-preview (1).png" alt="User Profile">
@@ -382,7 +391,6 @@
             <section id="catalog">
                 <div class="dashboard-header">
                     <h1>Book Catalog</h1>
-                    <button class="add-book-btn">+ Add Book</button>
                 </div>
                 <div class="book-catalog">
                     <!-- Book Card Template -->
@@ -429,13 +437,6 @@
             </section>
         </div>
     </div>
-
-    <script>
-        // Placeholder for future JavaScript interactions
-        document.querySelector('.add-book-btn').addEventListener('click', function () {
-            alert('Add Book functionality will be implemented');
-        });
-    </script>
+    <script src="../js/dashboard.js"></script>
 </body>
-
 </html>
