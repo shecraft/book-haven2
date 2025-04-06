@@ -1,0 +1,26 @@
+@media screen and (max-width: 480px) {
+    .sidebar {
+        font-size: 14px; /* Smaller font size for sidebar */
+    }
+
+    .header-title {
+        font-size: 1.2em; /* Smaller header title font size */
+    }
+
+    .header-actions {
+        flex-direction: column; /* Stack search bar and profile vertically */
+    }
+
+    .search-bar {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add bottom margin */
+    }
+
+    .book-card {
+        padding: 0.5rem; /* Further reduce padding for book cards */
+    }
+
+    .book-card img {
+        height: 200px; /* Adjust image height */
+    }
+}

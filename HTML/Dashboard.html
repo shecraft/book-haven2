@@ -51,9 +51,9 @@
           max-width: 1200px;
           margin: 3rem auto;
           padding: 2rem;
-          background-color: rgba(255, 255, 255, 0.9);
+          /* background-color: rgba(255, 255, 255, 0.9); */
           border-radius: 20px;
-         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
           display: flex;
           flex-wrap: wrap;
           gap: 20px;
@@ -355,17 +355,150 @@
         .rating-star {
             margin: 0 2px;
         }
+        .book-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .book-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .book-card h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.3rem;
+    color: #333;
+  }
+  
+  .book-card p {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+  }
+  
+  .rating {
+    font-size: 1.2rem;
+    color: #ffc107;
+    margin-bottom: 0.8rem;
+  }
+  
+  .add-book-btn {
+     background-color: #007bff; /* Primary blue color */
+     color: #fff; /* White text */
+     border: none; /* No border */
+     padding: 10px 15px; /* Padding for spacing */
+     border-radius: 26px; /* Rounded corners */
+     cursor: pointer; /* Pointer cursor on hover */
+     text-decoration: none; /* No underline */
+     display: inline-block; /* Makes it behave like a button */
+     font-weight: 400; /* Bold text */
+     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+     font-size: 14px;
+   }
+  
+  .add-book-btn:hover {
+    background-color: #0056b3;
+  }
+     /* media query */
+     /* Media Queries for Responsive Design */
+      /* Media Queries for Responsive Design */
+      @media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column; /* Stack sidebar and main content */
+    }
 
-        /* @media screen and (max-width:500px) {
-            .sidebar{
-                opacity: 0;
-                position: absolute;
-                transform: translateX(-100%);
-            }
-            .header{
-                width: 500px;
-            }
-        } */
+    .sidebar {
+        width: 100%; /* Full width sidebar */
+        position: relative; /* Change position to relative */
+        height: auto; /* Allow sidebar to adjust height */
+        padding: 5px; /* Reduced padding for smaller screens */
+        box-shadow: none; /* Remove shadow for a cleaner look */
+        
+    }
+
+    .header {
+        position: relative; /* Ensure the header is positioned relative */
+        left: 0; /* Align header with the sidebar */
+        right: 0; /* Align header with the sidebar */
+        z-index: 200; /* Ensure the header is above other content */
+        padding: 10px 20px; /* Add some padding for visual space */
+        margin-top: 0; /* Remove any top margin */
+        background-color: var(--header-bg); /* Ensure background color is set */
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 15px; /* Add some space above */
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .book-list-container {
+        padding: 1rem; /* Reduce padding on smaller screens */
+    }
+
+    .book-card {
+        padding: 1rem; /* Consistent padding for cards */
+    }
+
+    .add-book-btn {
+        padding: 8px 12px; /* Smaller button padding */
+    }
+
+    .book-card img {
+        height: 200px; /* Adjust image height for smaller screens */
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .header-title {
+        font-size: 1.2em; /* Smaller header title */
+    }
+
+    .search-bar input {
+        padding: 6px 10px; /* Reduce padding in search bar */
+        font-size: 14px; /* Smaller text size */
+    }
+
+    .search-bar button {
+        padding: 6px; /* Smaller button size */
+        font-size: 14px; /* Smaller text size */
+    }
+
+    .book-card h3 {
+        font-size: 1rem; /* Smaller book title */
+    }
+
+    .book-card p {
+        font-size: 0.85rem; /* Smaller author name */
+    }
+
+    .rating {
+        font-size: 1rem; /* Smaller rating font size */
+    }
+}
+
+
     </style>
 </head>
 
@@ -379,7 +512,7 @@
             </div>
             <ul class="sidebar-menu">
                 <li><a href="#catalog" class="active"><i class="fas fa-book"></i> Book Catalog</a></li>
-                <li><a href="#categories"><i class="fas fa-tags"></i> Categories</a></li>
+                <li><a href="../html/categories.html"><i class="fas fa-tags"></i> Categories</a></li>
                 <li><a href="./addBook.html"><i class="fas fa-sign-out-alt"></i> Add Book</a></li>
                 <li><a href="#reviews"><i class="fas fa-star"></i> Reviews</a></li>
                 <li><a href="./borrow.html"><i class="fas fa-cog"></i> Borrow</a></li>
@@ -410,31 +543,143 @@
                 <div class="dashboard-header">
                     <h1>Book Catalog</h1>
                 </div>
-                <div class="book-catalog">
-                    <!-- Book Card Template -->
-                    <div class="book-card">
-                        <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/96/7324653/1.jpg?5688" alt="Book Cover">
-                        <h3>Book Title</h3>
-                        <p>Author Name</p>
-                        <div class="rating">
-                            <span class="rating-star">★</span>
-                            <span class="rating-star">★</span>
-                            <span class="rating-star">★</span>
-                            <span class="rating-star">★</span>
-                            <span class="rating-star">☆</span>
-                        </div>
-                        <div class="book-card-actions">
-                            <button>Edit</button>
-                            <button>Remove</button>
-                        </div>
-                    </div>
-                    <!-- Repeat book card for multiple books -->
-                </div>
+                <div id="book-list"     class="book-list-container">
+                    <!-- Books will be injected here -->
+               </div> 
             </section>
 
             <!-- Categories Section -->
             <section id="categories" class="categories-section">
-                <div class="dashboard-header">
+                <div id="book-list" class="book-list-container">
+                    <div class="book-card">
+                      <img src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg" alt="Book Cover">
+                      <h3>The Alchemist</h3>
+                      <p>Paulo Coelho</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg" alt="Book Cover">
+                      <h3>To Kill a Mockingbird</h3>
+                      <p>Harper Lee</p>
+                      <div class="rating">★★★★★</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://images-na.ssl-images-amazon.com/images/I/91ocU8970hL.jpg" alt="Book Cover">
+                      <h3>1984</h3>
+                      <p>George Orwell</p>
+                      <div class="rating">★★★★★</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://images-na.ssl-images-amazon.com/images/I/81eB+7+CkUL.jpg" alt="Book Cover">
+                      <h3>Atomic Habits</h3>
+                      <p>James Clear</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="../images/sower.jpg" alt="Book Cover">
+                      <h3>Rich Dad Poor Dad</h3>
+                      <p>Robert T. Kiyosaki</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="../images/storm.jpg" alt="Book Cover">
+                      <h3>Think and Grow Rich</h3>
+                      <p>Napoleon Hill</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/81drfTT9ZfL.jpg" alt="Book Cover">
+                      <h3>The Subtle Art of Not Giving a F*ck</h3>
+                      <p>Mark Manson</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="../images/storm.jpg" alt="Book Cover">
+                      <h3>Becoming</h3>
+                      <p>Michelle Obama</p>
+                      <div class="rating">★★★★★</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/81QpkIctqPL.jpg" alt="Book Cover">
+                      <h3>Educated</h3>
+                      <p>Tara Westover</p>
+                      <div class="rating">★★★★★</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/81wgcld4wxL.jpg" alt="Book Cover">
+                      <h3>Can't Hurt Me</h3>
+                      <p>David Goggins</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/91uwocAMtSL.jpg" alt="Book Cover">
+                      <h3>The Midnight Library</h3>
+                      <p>Matt Haig</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="../images/red hite.jpg" alt="Book Cover">
+                      <h3>The Silent Patient</h3>
+                      <p>Alex Michaelides</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/81WcnNQ-TBL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
+                      <h3>Verity</h3>
+                      <p>Colleen Hoover</p>
+                      <div class="rating">★★★☆☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="https://m.media-amazon.com/images/I/71aG+xDKSYL.jpg" alt="Book Cover">
+                      <h3>The 5 AM Club</h3>
+                      <p>Robin Sharma</p>
+                      <div class="rating">★★★☆☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+                  
+                    <div class="book-card">
+                      <img src="../images/lies.jpg" alt="Book Cover">
+                      <h3>Start With Why</h3>
+                      <p>Simon Sinek</p>
+                      <div class="rating">★★★★☆</div>
+                      <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                    </div>
+
+                    <div class="book-card">
+                        <img src="../images/book haven cover.jpg" alt="Book Cover">
+                        <h3>Costly Mistake</h3>
+                        <p>Robert Ama</p>
+                        <div class="rating">★★★★☆</div>
+                        <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                      </div>
+              </div>
+                <!-- <div class="dashboard-header">
                     <h1>Book Categories</h1>
                 </div>
                 <div class="categories-grid">
@@ -450,11 +695,9 @@
                         <h3>Science Fiction</h3>
                         <p>12 Books</p>
                     </div>
-                    <!-- More category cards -->
-                </div>
-              <div id="book-list"     class="book-list-container">
-                    <!-- Books will be injected here -->
-               </div> 
+                   
+                </div> -->
+             
             </section>
         </div> 
     </div>

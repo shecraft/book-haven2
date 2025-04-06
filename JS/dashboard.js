@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
         bookCard.innerHTML = `
           <div class="book-cover">
-            <img src="${book.coverURL || 'default.jpg'}" alt="${book.title}">
+            <img src="${book.coverURL || '../images/book haven cover.jpg'}" alt="${book.title}">
           </div>
           <div class="book-details">
             <h3>${book.title}</h3>

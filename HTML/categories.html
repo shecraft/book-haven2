@@ -24,6 +24,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 100%;
         }
 
         h1 {
@@ -33,8 +34,9 @@
 
         .categories-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
+            width:100%;
         }
 
         .category {
@@ -54,6 +56,25 @@
             margin: 0;
             color: #3498db;
         }
+        @media screen and (max-width:1200px){
+
+            .categories-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .category {
+                height: 160px;
+                padding: 15px;
+            }
+            
+            .category-icon {
+                font-size: 2rem;
+            }
+            
+            .category h3 {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -65,7 +86,7 @@
             <!-- Categories will be dynamically added here -->
         </div>
     </div>
-    <script type="module" src="categories.js"></script>
+    <script type="module" src="../js/categories.js"></script>
 </body>
 
 </html>
