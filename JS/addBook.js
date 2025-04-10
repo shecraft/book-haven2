@@ -1,3 +1,12 @@
+let searchParams = new URLSearchParams(location.search);
+let userID;
+if (searchParams.has("id")) {
+    userID = searchParams.get("id");
+    console.log(`User ID:${userID}`);
+}
+else{
+    location.href = 'signin.html';
+}
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
@@ -17,7 +26,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const colRef = collection(db, "Add book");
+const colRef = collection(db, `User ${userID} added book`);
 
 
 const addBookForm = document.getElementById('addBookForm');

@@ -36,9 +36,10 @@ async function logInUser(e) {
           password: signInForm.password.value.trim(),
       };
       await signInWithEmailAndPassword(auth, userDeatails.email, userDeatails.password);
+      const user = auth.currentUser
       showAlert();
       setTimeout(() => {
-          location.href = 'Dashboard.html';
+          location.href = `Dashboard.html?id=${user.uid}`;
       }, 2000);
   } catch (error) {
       console.log(error.message);

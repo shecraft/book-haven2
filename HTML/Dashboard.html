@@ -419,6 +419,71 @@
   .add-book-btn:hover {
     background-color: #0056b3;
   }
+  /* Footer */
+footer {
+    background-color: #2c2c54;
+    background-image:linear-gradient(to right, #87CEFA, #4682B4),
+                      url('/api/placeholder/1200/800');
+    background-size: cover;
+    background-position: center bottom;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 0 40px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a:hover {
+    color: #87CEEB; 
+}
+
+.social-links a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #ff9966;
+    position: relative;
+}
+
+.footer-column h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 40px;
+}
+
+.copyright{
+    color: #ecf0f1;
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 0 40px;
+}
+
      /* media query */
      /* Media Queries for Responsive Design */
       /* Media Queries for Responsive Design */
@@ -431,19 +496,58 @@
         width: 100%; /* Full width sidebar */
         position: relative; /* Change position to relative */
         height: auto; /* Allow sidebar to adjust height */
-        padding: 5px; /* Reduced padding for smaller screens */
+        padding: .1px; /* Reduced padding for smaller screens */
         box-shadow: none; /* Remove shadow for a cleaner look */
+    }
+    .sidebar-menu{
+        padding: 1px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: none;
         
     }
+    .sidebar-menu li{
+        padding: .1px;
+    }
+    
 
     .header {
         position: relative; /* Ensure the header is positioned relative */
         left: 0; /* Align header with the sidebar */
         right: 0; /* Align header with the sidebar */
         z-index: 200; /* Ensure the header is above other content */
-        padding: 10px 20px; /* Add some padding for visual space */
+        padding: 10px ; /* Add some padding for visual space */
         margin-top: 0; /* Remove any top margin */
         background-color: var(--header-bg); /* Ensure background color is set */
+        display: flex; /* Flexbox for aligning items */
+        justify-content: space-between; /* Space between items */
+        align-items: center; /* Center items vertically */
+        gap: 2rem;
+    }
+
+    /* .header-actions {
+
+    } */
+
+    .header-title {
+        font-size: 1.5em; /* Ensure the title is still visible */
+        color: var(--text-color); /* Set text color */
+    }
+
+    .search-bar {
+        display: flex; /* Ensure the search bar is displayed */
+        align-items: center; /* Center items in the search bar */
+    }
+
+    .search-bar input {
+        padding: 6px 10px; /* Adjust input padding */
+        font-size: 14px; /* Adjust font size */
+        width:130px; /* Allow input to resize appropriately */
+    }
+
+    #search-btn{
+        display: none;
     }
 
     .main-content {
@@ -470,39 +574,12 @@
 }
 
 
-@media screen and (max-width: 480px) {
-    .header-title {
-        font-size: 1.2em; /* Smaller header title */
-    }
-
-    .search-bar input {
-        padding: 6px 10px; /* Reduce padding in search bar */
-        font-size: 14px; /* Smaller text size */
-    }
-
-    .search-bar button {
-        padding: 6px; /* Smaller button size */
-        font-size: 14px; /* Smaller text size */
-    }
-
-    .book-card h3 {
-        font-size: 1rem; /* Smaller book title */
-    }
-
-    .book-card p {
-        font-size: 0.85rem; /* Smaller author name */
-    }
-
-    .rating {
-        font-size: 1rem; /* Smaller rating font size */
-    }
-}
-
 
     </style>
 </head>
 
 <body>
+    <a href="" id="addbookA">Add Book Now</a>
     <div class="dashboard">
         <!-- Sidebar Navigation -->
         <div class="sidebar">
@@ -513,7 +590,7 @@
             <ul class="sidebar-menu">
                 <li><a href="#catalog" class="active"><i class="fas fa-book"></i> Book Catalog</a></li>
                 <li><a href="../html/categories.html"><i class="fas fa-tags"></i> Categories</a></li>
-                <li><a href="./addBook.html"><i class="fas fa-sign-out-alt"></i> Add Book</a></li>
+                <li id="addbookA"><a href=""><i class="fas fa-sign-out-alt"></i> Add Book</a></li>
                 <li><a href="#reviews"><i class="fas fa-star"></i> Reviews</a></li>
                 <li><a href="./borrow.html"><i class="fas fa-cog"></i> Borrow</a></li>
                 <li><a href="./About Us.html"><i class="fas fa-sign-out-alt"></i>About</a></li>
@@ -523,16 +600,21 @@
 
         <!-- Header -->
         <div class="header">
-            <div class="header-title">Dashboard</div>
-            <div class="header-actions">
-                <div class="search-bar">
-                    <input id="search-input" type="text" placeholder="Search books...">
-                    <button id="search-btn">🔍</button>
+            <div class="">
+                <div class="header-title">Dashboard</div>
+                <div class="greet">
+                    <p id="greetP" style="font-weight: 700; font-family: sans-serif;"></p>
                 </div>
-                <div class="user-profile">
+            </div>
+            <div class="search-bar">
+                <input id="search-input" type="text" placeholder="Search books...">
+                <button id="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <!-- <div class="user-profile">
                     <img src="../images/book_haven_logo-removebg-preview (1).png" alt="User Profile">
                     <span>John Doe</span>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -556,6 +638,8 @@
                       <h3>The Alchemist</h3>
                       <p>Paulo Coelho</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="./alche.html" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -564,6 +648,8 @@
                       <h3>To Kill a Mockingbird</h3>
                       <p>Harper Lee</p>
                       <div class="rating">★★★★★</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -572,6 +658,8 @@
                       <h3>1984</h3>
                       <p>George Orwell</p>
                       <div class="rating">★★★★★</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -580,6 +668,8 @@
                       <h3>Atomic Habits</h3>
                       <p>James Clear</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -588,6 +678,8 @@
                       <h3>Rich Dad Poor Dad</h3>
                       <p>Robert T. Kiyosaki</p>
                       <div class="rating">★★★★☆</div>
+                      <a href=".#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -596,6 +688,8 @@
                       <h3>Think and Grow Rich</h3>
                       <p>Napoleon Hill</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -604,6 +698,8 @@
                       <h3>The Subtle Art of Not Giving a F*ck</h3>
                       <p>Mark Manson</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -612,6 +708,8 @@
                       <h3>Becoming</h3>
                       <p>Michelle Obama</p>
                       <div class="rating">★★★★★</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -620,6 +718,8 @@
                       <h3>Educated</h3>
                       <p>Tara Westover</p>
                       <div class="rating">★★★★★</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -628,6 +728,8 @@
                       <h3>Can't Hurt Me</h3>
                       <p>David Goggins</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -636,6 +738,8 @@
                       <h3>The Midnight Library</h3>
                       <p>Matt Haig</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -644,6 +748,8 @@
                       <h3>The Silent Patient</h3>
                       <p>Alex Michaelides</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -652,6 +758,8 @@
                       <h3>Verity</h3>
                       <p>Colleen Hoover</p>
                       <div class="rating">★★★☆☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -660,6 +768,8 @@
                       <h3>The 5 AM Club</h3>
                       <p>Robin Sharma</p>
                       <div class="rating">★★★☆☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
                   
@@ -668,14 +778,58 @@
                       <h3>Start With Why</h3>
                       <p>Simon Sinek</p>
                       <div class="rating">★★★★☆</div>
+                      <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
                       <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                     </div>
 
                     <div class="book-card">
-                        <img src="../images/book haven cover.jpg" alt="Book Cover">
+                        <img src="../images/costly.jpg" alt="Book Cover">
                         <h3>Costly Mistake</h3>
                         <p>Robert Ama</p>
                         <div class="rating">★★★★☆</div>
+                        <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
+                        <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                      </div>
+
+                      <div class="book-card">
+                        <img src="../images/lekki.jpg" alt="Book Cover">
+                        <h3>Lekki Headmaster</h3>
+                        <p>Kabir Jolabi</p>
+                        <div class="rating">★★★★☆</div>
+                        <a href="./readBooks.html" class="add-book-btn">Read Book</a>
+                      <br> <br>
+                        <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                      </div>
+
+                      <div class="book-card">
+                        <img src="../images/king of sloth.jpg" alt="Book Cover">
+                        <h3>King of Sloth</h3>
+                        <p>Sloth Div</p>
+                        <div class="rating">★★★★☆</div>
+                        <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
+                        <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                      </div>
+
+                      <div class="book-card">
+                        <img src="../images/king of pride.jpg" alt="Book Cover">
+                        <h3>King of Pride</h3>
+                        <p>King Ana</p>
+                        <div class="rating">★★★★☆</div>
+                        <a href="#" class="add-book-btn">Read Book</a>
+                      <br> <br>
+                        <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
+                      </div>
+
+                      <div class="book-card">
+                        <img src="../images/queen.jpg" alt="Book Cover">
+                        <h3>Proud Queen</h3>
+                        <p>Good Don</p>
+                        <div class="rating">★★★★☆</div>
+                        <a href="#" class="add-book-btn">Read Book</a>
+                        <br><br>
                         <a href="./borrow.html" class="add-book-btn">Borrow Book</a>
                       </div>
               </div>
@@ -699,6 +853,35 @@
                 </div> -->
              
             </section>
+                <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Book Haven</h3>
+                <p>Your gateway to knowledge and imagination. We provide access to thousands of books for readers of all ages and interests.</p>
+            </div>
+          
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>123 Library Street, Reading City</p>
+                <p>Phone: +2347083056273</p>
+                <p>Email: info@bookhaven.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+         
+                <div class="social-links">
+                    <a href="https://web.facebook.com/?_rdc=1&_rdr#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@FaizahOjo" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Book Haven. All Rights Reserved.</p>
+        </div>
+    </footer>
         </div> 
     </div>
     <script type="module" src="../js/dashboard.js"></script>

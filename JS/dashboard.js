@@ -1,6 +1,14 @@
-
+  let searchParams = new URLSearchParams(location.search);
+  let userID;
+  if (searchParams.has("id")) {
+      userID = searchParams.get("id");
+      console.log(`User ID:${userID}`);
+  }
+  else{
+      location.href = 'sign in.html';
+  }
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+  import { getFirestore, collection, getDocs,doc,getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBmw4cU8PJ_Fjl5-OueqW7j-NUrvuTDgck",
@@ -13,20 +21,31 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  // const colRef = collection(db, "Add book")
-
+  const userColRef = collection(db, "BOOK HAVEN");
   window.firebaseDB = db;
-
-
+  const addbookA = document.querySelectorAll("#addbookA").forEach(eachLink => {
+    eachLink.addEventListener("click", goToAddbook)
+  });
+ function goToAddbook(e) {
+  e.preventDefault()
+  location.href = `addBook.html?id=${userID}`;
+ }
 document.addEventListener("DOMContentLoaded", async () => {
     const db = window.firebaseDB;
     const bookList = document.getElementById("book-list");
   
     try {
-      const snapshot = await getDocs(collection(db, "Add book"));
+      const userDocref = doc(userColRef, userID);
+      const docSnap = await getDoc(userDocref);
+      const userName = docSnap.data();
+      const greetP = document.querySelectorAll("#greetP").forEach(eachP => {
+        eachP.innerHTML = "";
+        eachP.innerHTML += `Hi, ${userName.name}👋`;
+      });
+      const snapshot = await getDocs(collection(db, `User ${userID} added book`));
   
       if (snapshot.empty) {
-        bookList.innerHTML = "<p>No books found in your library.</p>";
+        bookList.innerHTML = `<p>No books found in your library, <a href="" id="addbookA">Add Book Now</a> </p>`;
         return;
       }
   
@@ -35,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
-  
         bookCard.innerHTML = `
           <div class="book-cover">
             <img src="${book.coverURL || '../images/book haven cover.jpg'}" alt="${book.title}">
