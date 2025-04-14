@@ -6,14 +6,17 @@
     <link rel="shortcut icon" href="../images/book_haven_logo-removebg-preview (1).png" type="image/x-icon">
     <title>Read book</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
-    .total-chapter{
+    body{
         background-color: orange;
         color: black;
     }
-    .chapter1{
-        text-align: center;
+    .chapter1 {
+      text-align: center;
+      animation: slideDown 1s ease-in-out;
     }
+
     .chapter1 h2{
           font-family: monospace;
           font-size: 22px;
@@ -29,13 +32,73 @@
         height: 40px;
         border: none;
         font-size: 18px;
-        border-radius: 18px;
+        border-radius: 8px;
     }
     button:hover{
         transition: all 2s ease-in-out;
-        background-color: orange;
-        color: black;
+        background-color: black;
+        color: white;
     }
+
+    body.dark-mode {
+       color: white;
+       background-color: #333;
+    }
+
+    .BTN{
+        font-size: 12px;
+        width: 100px;
+        border-radius: 8px;
+        /* transform: translateY(0.5rem); */
+    }
+
+    .swal2-icon.swal2-info {
+      color: #333 !important;
+      border-color: #FF4500 !important;
+    }
+
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-150px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+    .chapter1 h2 {
+        font-size: 18px;
+    }
+
+    .chapter1 p {
+        font-size: 12px;
+    }
+
+    button {
+        width: 80px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .BTN{
+      width: 80px;
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .Pre {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+    
 </style>
 <body>
     <div class="total-chapter">
@@ -62,24 +125,55 @@
         let displayP = document.getElementById("displayP");
         let index = 0;
         function displayChapter(index) {
-            displayP.innerHTML = "";
-            displayP.innerHTML += `
-                <h2>Chapter ${index +1}:${allChapter[index].topic}</h2>
-                ${allChapter[index].chapter}
-                <br><br><br><br>
-                <div class="Pre">
-                    <button onclick="pre()" id="preBtn">Previous</button>
-                    <button onclick="next()">Next</button>
-                </div>
-            `;
+         displayP.classList.remove("chapter1");
+         void displayP.offsetWidth; 
+         displayP.classList.add("chapter1"); 
+         displayP.innerHTML = `
+          <h2>Chapter ${index +1}: ${allChapter[index].topic}</h2>
+          ${allChapter[index].chapter}
+          <br><br><br><br>
+           <div class="Pre">
+              <button onclick="pre()" id="preBtn">Previous</button>
+              <button onclick="next()">Next</button>
+              <button class="BTN" id="theme-toggle">Dark Mode</button>
+           </div>
+         `;
         }
+
         displayChapter(index)
     function next() {
         if (index < allChapter.length - 1) {
             index++;
-            displayChapter(index);
-            document.getElementById("preBtn").disabled ==="false"
-        }
+            Swal.fire({
+              toast: true,
+              position: 'top',
+              icon: 'info',
+              title: 'Loading next chapter...',
+              showConfirmButton: false,
+              timer: 1000,
+              background: '#FFA500',
+               width: '250px',
+              customClass: {
+               popup: 'small-toast',
+               icon:`custom-icon`
+
+          }
+        }).then(() => {
+          displayChapter(index);
+        });
+        } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'End of Book',
+          text: 'Redirecting to dashboard...',
+          showConfirmButton: false,
+          timer: 2000,
+          background: '#FFA500',
+          width: '300px'
+        }).then(() => {
+          window.location.href = "./dashboard.html";
+        });
+      }
     }
 
     function pre() {
@@ -88,6 +182,28 @@
             displayChapter(index);
         }
     }
+
+const themeToggleButton = document.getElementById('theme-toggle');
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    themeToggleButton.textContent = isDarkMode ? ' Light Mode' : ' Dark Mode';
+
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}
+
+themeToggleButton.addEventListener('click', toggleTheme);
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggleButton.textContent = 'Switch to Light Mode';
+} else {
+    themeToggleButton.textContent = 'Switch to Dark Mode';
+}
+
+
     </script>
 </body>
 </html>

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const snapshot = await getDocs(collection(db, `User ${userID} added book`));
   
       if (snapshot.empty) {
-        bookList.innerHTML = `<p>No books found in your library, <a href="" id="addbookA">Add Book Now</a> </p>`;
+        bookList.innerHTML = `<p>No books found in your library</p>`;
         return;
       }
   

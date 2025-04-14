@@ -67,11 +67,11 @@ async function createAddBookForm(e) {
         showAlert()
     } catch (error) {
         console.log(" error addind book", error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'There was an error adding the book. Please try again.',
-        });
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Error',
+        //     text: 'There was an error adding the book. Please try again.',
+        // });
 
     }
 

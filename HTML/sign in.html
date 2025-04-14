@@ -93,11 +93,14 @@
             <input name="email" type="email" placeholder="Email Address" required>
             <input name="password" type="password" placeholder="Password" required>
             <p id="errorP"></p>
-            <button id="submitBTN" type="submit">Login</button>
+            <button id="submitBTN" type="submit">
+                <div id="spinners" class="spinner-grow  d-none fs-6" role="status"></div>
+                Log In</button>
             <p>Don't have an account? <a href="./sign up.html">Sign up</a></p>
             <p><a href="#">Forgot Password?</a></p>
         </form>
     </div>
 <script type="module" src="../JS/signin.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

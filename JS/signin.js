@@ -31,6 +31,8 @@ async function logInUser(e) {
   }
 
   try {
+       spinners.classList.remove("d-none")
+       submitBTN.disabled = true
       const userDeatails = {
           email: signInForm.email.value.trim(),
           password: signInForm.password.value.trim(),
@@ -48,7 +50,10 @@ async function logInUser(e) {
       } else {
           errorP.textContent = "An unexpected error occurred. Please try again later.";
       }
-  }
+    } finally{
+        spinners.classList.add("d-none")
+        submitBTN.disabled = false
+     }
 }
 onAuthStateChanged(auth, (user)=>{
   if (user) {
@@ -65,6 +70,8 @@ Swal.fire({
   title: "Sign In!",
   text: "Successfully registered",
   icon: "success",
-  confirmButtonText: "OK"
+  confirmButtonText: "OK",
+  background: '#63A4D3',
+  width: '320px'
   });
 }
